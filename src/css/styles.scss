@@ -1,0 +1,162 @@
+@import 'base';
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;700&display=swap');
+
+/* Variables
+============================================ */
+
+:root {
+  --black: #323E42;
+  --purple: #C55FFC;
+  --purple-dark: #7954A1;
+  --purple-light: #EFDCF9;
+  --white: #FFF;
+}
+
+@mixin wrapper {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1080px;
+  padding: 1rem;
+}
+
+@mixin videojs-font {
+  font-family: videojs-record;
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Basics
+============================================ */
+
+body {
+  background-color: #fbf7f0;
+  color: var(--black);
+  font-family: 'Jost', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+a,
+a:visited {
+  color: var(--white);
+  text-decoration: none;
+  transition: ease-in-out 0.3s filter;
+  font-weight: 700;
+
+  &:focus,
+  &:hover {
+    filter: brightness(0.8);
+  }
+}
+
+.button,
+.button:visited {
+  background-color: var(--black);
+  color: var(--white);
+  transition: ease-in-out 0.3s background-color;
+  padding: 0.5rem 1rem;
+  border-radius: 7px;
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1);
+
+  &:focus,
+  &:hover {
+    background-color: var(--purple-dark);
+    filter: brightness(1);
+  }
+}
+
+/* Header
+============================================ */
+
+.header__wrapper {
+  @include wrapper();
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+
+  @media only screen and (max-width: 900px) {
+    text-align: left;
+    justify-content: center;
+  }
+}
+
+.header__heading {
+  margin-right: 1.5rem;
+  @media only screen and (max-width: 900px) {
+    padding-bottom: 0.5rem;
+  }
+}
+
+.header__content {
+  width: 100%;
+  padding: 0.5rem 0;
+}
+
+/* Main
+============================================ */
+
+main{
+  @include wrapper();
+}
+
+/* Onboarding
+============================================ */
+
+.click-tap {
+  &:before {
+    content: "click";
+
+    @media only screen and (max-width: 900px) {
+      content: "tap";
+    }
+  }
+}
+
+.camera {
+  @include videojs-font();
+
+  &:before {
+    content: "\f102";
+  }
+}
+
+.record {
+  @include videojs-font();
+
+  &:before {
+    content: "\f105";
+  }
+}
+
+/* Recorder
+============================================ */
+
+#video {
+  width: 100%;
+  padding-top: 56.25%;
+  font-size: 18px;
+  border-radius: 7px;
+
+  @media only screen and (max-width: 900px) {
+    padding-top: 300%;
+  }
+}
+
+main {
+  .video-js .vjs-control-bar {
+    display: flex;
+    align-items: center;
+    background-color: var(--black);
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+  }
+
+  .vjs-record .vjs-device-button.vjs-control {
+    box-shadow: none;
+    background-color: var(--black);
+    border-radius: 7px;
+    font-size: 1.5rem;
+  }
+}
