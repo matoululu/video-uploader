@@ -50,19 +50,30 @@ a:visited {
   }
 }
 
+
 .button,
-.button:visited {
+.button:visited,
+button.button {
+  border: 0;
+  cursor: pointer;
   background-color: var(--black);
   color: var(--white);
   transition: ease-in-out 0.3s background-color;
   padding: 0.5rem 1rem;
   border-radius: 7px;
   box-shadow: 0 0 0.5rem rgba(0,0,0,0.1);
+  font-size: 1rem;
 
   &:focus,
   &:hover {
     background-color: var(--purple-dark);
     filter: brightness(1);
+  }
+
+  &.disabled {
+    background-color: var(--black);
+    cursor: not-allowed;
+    pointer-events: none;
   }
 }
 
@@ -133,14 +144,28 @@ main{
 /* Recorder
 ============================================ */
 
-#video {
-  width: 100%;
-  padding-top: 56.25%;
+.video__wrapper {
+  position: relative;
+}
+
+#video,
+video {
   font-size: 18px;
   border-radius: 7px;
+}
 
-  @media only screen and (max-width: 900px) {
-    padding-top: 300%;
+.video-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255,255,255,0.1);
+  text-align: center;
+  padding: 1rem;
+
+  .button,
+  button {
+    background-color: var(--purple-dark);
   }
 }
 
