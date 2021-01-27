@@ -8,6 +8,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 import 'firebase/storage';
+import Howto from './Howto';
 
 class Recorder extends React.Component {
   constructor() {
@@ -21,16 +22,18 @@ class Recorder extends React.Component {
       controls: true,
       bigPlayButton: false,
       loop: false,
-      fluid: true,
-      width: 320,
-      height: 240,
+      fluid: false,
+      width: 640,
+      height: 480,
       plugins: {
         record: {
           image: false,
           audio: true,
           video: true,
+          frameWidth: 640,
+          frameHeight: 480,
           maxLength: 20,
-          debug: false
+          debug: true
         }
       }
     };
@@ -49,8 +52,7 @@ class Recorder extends React.Component {
     firebase.initializeApp(this.config);
 
     this.player = videojs('video', this.options, function() {
-      const msg = `Using video.js ${videojs.VERSION} with videojs-record ${videojs.getPluginVersion('record')}`;
-      videojs.log(msg);
+
     });
 
     this.player.on('startRecord', ()=> {
@@ -100,8 +102,14 @@ class Recorder extends React.Component {
   render() {
     return(
       <div className="video__wrapper">
-        <video id="video" playsInline className="video-js vjs-default-skin"></video>
-        {this.state.recorded ? <div className="video-button"><button onClick={this.handleSend} className="button">Send video</button></div> : null }
+        <div className="video__content">
+          <p>Welcome to Emily's 29th birthday surprise! I've built this site to gather a collection of warm birthday wishes to piece together for Emily, this way we won't all feel so separated from one another if even for a short moment.</p>
+        </div>
+        <div className="video__relative">
+          <video className="video video-js vjs-default-skin" id="video"  ></video>
+          <Howto/>
+          {this.state.recorded ? <div className="video__button"><p><span aria-label="Thumbs up">👍</span> Nice video! Happy with it?</p><button onClick={this.handleSend} className="button">Send video</button></div> : null }
+        </div>
       </div>
 
     )

@@ -6,6 +6,7 @@
 
 :root {
   --black: #323E42;
+  --box-shadow: 0 0 0.5rem rgba(0,0,0,0.1);
   --purple: #C55FFC;
   --purple-dark: #7954A1;
   --purple-light: #EFDCF9;
@@ -25,29 +26,22 @@
   font-style: normal;
 }
 
+@mixin video-font {
+  font-family: VideoJS;
+  font-weight: normal;
+  font-style: normal;
+}
+
 /* Basics
 ============================================ */
 
 body {
-  background-color: #fbf7f0;
+  background-color: #F4F6F8;
   color: var(--black);
   font-family: 'Jost', sans-serif;
   font-size: 18px;
   font-weight: 400;
   line-height: 1.5;
-}
-
-a,
-a:visited {
-  color: var(--white);
-  text-decoration: none;
-  transition: ease-in-out 0.3s filter;
-  font-weight: 700;
-
-  &:focus,
-  &:hover {
-    filter: brightness(0.8);
-  }
 }
 
 
@@ -56,13 +50,12 @@ a:visited {
 button.button {
   border: 0;
   cursor: pointer;
-  background-color: var(--black);
+  background-color: var(--purple-dark);
   color: var(--white);
   transition: ease-in-out 0.3s background-color;
   padding: 0.5rem 1rem;
-  border-radius: 7px;
-  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1);
-  font-size: 1rem;
+  border-radius: 4px;
+  font-size: 1.25rem;
 
   &:focus,
   &:hover {
@@ -93,22 +86,28 @@ button.button {
   }
 }
 
+.header__logo-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.header__logo {
+  max-width: 64px;
+  margin-right: 1rem;
+}
+
 .header__heading {
   margin-right: 1.5rem;
   @media only screen and (max-width: 900px) {
-    padding-bottom: 0.5rem;
+    display: none;
   }
-}
-
-.header__content {
-  width: 100%;
-  padding: 0.5rem 0;
 }
 
 /* Main
 ============================================ */
 
-main{
+main {
   @include wrapper();
 }
 
@@ -141,47 +140,119 @@ main{
   }
 }
 
+.play {
+  @include video-font();
+
+  &:before {
+    content: "\f101";
+  }
+}
+
 /* Recorder
 ============================================ */
 
+
+#video {
+  grid-area: video;
+  font-size: 18px;
+  border-bottom-left-radius: 4px;
+  width: 100%;
+
+  @media only screen and (max-width: 900px) {
+    font-size: 0.7rem;
+  }
+}
+
+.video__howto {
+  grid-area: info;
+  background-color: var(--white);
+  padding: 1rem;
+  border-bottom-right-radius: 4px;
+
+  @media only screen and (max-width: 900px) {
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
+
+  ol {
+    padding-left: 1.2rem;
+  }
+}
+
+.video__relative {
+  display: grid;
+  grid-area: video;
+  position: relative;
+  grid-template-columns: 66.666% 33.333%;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "video info";
+
+  @media only screen and (max-width: 900px) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.video__button {
+  position: absolute;
+  bottom: 20%;
+  left: 0;
+  width: 25%;
+  background-color: rgba(255,255,255,0.9);
+  padding: 1rem;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  box-shadow: var(--box-shadow);
+
+  @media only screen and (max-width: 900px) {
+    bottom: initial;
+    top: 0;
+    width: 100%;
+    border-radius: 0;
+  }
+}
+
+.main .video-js .vjs-control-bar {
+  display: flex;
+  align-items: center;
+  background-color: var(--black);
+  border-bottom-left-radius: 4px;
+
+  @media only screen and (max-width: 900px) {
+    border-radius: 0;
+  }
+}
+
+.main .vjs-record .vjs-device-button.vjs-control {
+  box-shadow: none;
+  background-color: var(--black);
+  border-radius: 4px;
+  font-size: 1.5rem;
+}
+
+.video__content {
+  background-color: var(--purple-dark);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  color: var(--white);
+  padding: 0.25rem 1rem;
+  grid-area: header;
+}
+
 .video__wrapper {
   position: relative;
-}
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  gap: 0px 0px;
+  grid-template-areas:
+    "header"
+    "video";
 
-#video,
-video {
-  font-size: 18px;
-  border-radius: 7px;
-}
-
-.video-button {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: rgba(255,255,255,0.1);
-  text-align: center;
-  padding: 1rem;
-
-  .button,
-  button {
-    background-color: var(--purple-dark);
-  }
-}
-
-main {
-  .video-js .vjs-control-bar {
+  @media only screen and (max-width: 900px) {
     display: flex;
-    align-items: center;
-    background-color: var(--black);
-    border-bottom-left-radius: 7px;
-    border-bottom-right-radius: 7px;
-  }
-
-  .vjs-record .vjs-device-button.vjs-control {
-    box-shadow: none;
-    background-color: var(--black);
-    border-radius: 7px;
-    font-size: 1.5rem;
+    flex-direction: column;
   }
 }

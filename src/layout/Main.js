@@ -2,7 +2,7 @@ import Recorder from '../components/Recorder';
 
 function Main() {
   return (
-    <main>
+    <main className="main">
       <Recorder></Recorder>
     </main>
   );
