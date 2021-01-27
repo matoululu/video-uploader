@@ -20,6 +20,7 @@ function Howto() {
         </li>
       </ol>
       <br/>
+      <p>If you are experiencing issues on a mobile device try switching to desktop/laptop</p>
       <p><em>Please note all videos are limited to 20 seconds</em></p>
     </div>
   );

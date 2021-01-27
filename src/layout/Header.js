@@ -8,7 +8,6 @@ function Header() {
           <img className="header__logo" src={ Logo } alt="Emily's Birthday website"/>
           <h1 className="header__heading">Emily's Birthday</h1>
         </div>
-        <a href="/">Get help</a>
       </div>
     </header>
   );

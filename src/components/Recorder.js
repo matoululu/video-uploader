@@ -68,6 +68,14 @@ class Recorder extends React.Component {
     });
   }
 
+  handleRetry = (e) => {
+    this.setState(state => ({
+      recorded: false
+    }));
+
+    this.player.record().reset();
+  }
+
   handleSend = (e) => {
     this.storage = firebase.storage().ref();
     const storageRef = this.storage;
@@ -80,7 +88,7 @@ class Recorder extends React.Component {
     videoRef.put(this.player.recordedData).then((snapshot) => {
       console.log('Uploaded a blob or file!');
 
-      e.target.textContent = 'Sent';
+      e.target.textContent = 'Sent!';
 
       setTimeout(() => {
         this.setState(state => ({
@@ -102,13 +110,14 @@ class Recorder extends React.Component {
   render() {
     return(
       <div className="video__wrapper">
-        <div className="video__content">
+        <div className="video__blurb">
           <p>Welcome to Emily's 29th birthday surprise! I've built this site to gather a collection of warm birthday wishes to piece together for Emily, this way we won't all feel so separated from one another if even for a short moment.</p>
+          <p className="ios">It appears you may be using an iPhone! Unfortunately, iOS doesn't support the features used here. Your best bet is to use a laptop, desktop or android device. Alternatively, you can enable this experimental feature by going to 'Settings' > 'Safari' > 'Advanced' > 'Experimental features' > enabled 'MediaRecorder' and then reload the page.</p>
         </div>
-        <div className="video__relative">
-          <video className="video video-js vjs-default-skin" id="video"  ></video>
+        <div className="video__content">
+          <video className="video video-js vjs-default-skin" playsInline id="video"  ></video>
           <Howto/>
-          {this.state.recorded ? <div className="video__button"><p><span aria-label="Thumbs up">👍</span> Nice video! Happy with it?</p><button onClick={this.handleSend} className="button">Send video</button></div> : null }
+          {this.state.recorded ? <div className="video__button"><button onClick={this.handleSend} className="button">Send video</button><button onClick={this.handleRetry} className="button button--secondary">Retry</button></div> : null }
         </div>
       </div>
 

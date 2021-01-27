@@ -1,16 +1,18 @@
 @import 'base';
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
 
 /* Variables
 ============================================ */
 
 :root {
-  --black: #323E42;
+  --black: #212B36;
   --box-shadow: 0 0 0.5rem rgba(0,0,0,0.1);
-  --purple: #C55FFC;
-  --purple-dark: #7954A1;
-  --purple-light: #EFDCF9;
+  --border-radius: 3px;
+  --purple: #9C6ADE;
+  --purple-dark: #794DB3;
+  --purple-light: #E3D0FF;
   --white: #FFF;
+  --green: #50B83C;
 }
 
 @mixin wrapper {
@@ -38,28 +40,27 @@
 body {
   background-color: #F4F6F8;
   color: var(--black);
-  font-family: 'Jost', sans-serif;
+  font-family: 'Open sans', sans-serif;
   font-size: 18px;
   font-weight: 400;
   line-height: 1.5;
 }
 
 
-.button,
-.button:visited,
 button.button {
   border: 0;
   cursor: pointer;
-  background-color: var(--purple-dark);
+  background: linear-gradient( 180deg,var(--green),#108043);
   color: var(--white);
   transition: ease-in-out 0.3s background-color;
   padding: 0.5rem 1rem;
-  border-radius: 4px;
+  border-radius: var(--border-radius);
   font-size: 1.25rem;
+  box-shadow: inset 0 1px 0 0 #BBE5B3,0 1px 0 0 rgba(22,29,37,.05),0 0 0 0 transparent;
 
   &:focus,
   &:hover {
-    background-color: var(--purple-dark);
+    background: linear-gradient( 180deg,#108043,var(--green));
     filter: brightness(1);
   }
 
@@ -67,6 +68,19 @@ button.button {
     background-color: var(--black);
     cursor: not-allowed;
     pointer-events: none;
+  }
+
+  &.button--secondary {
+    margin-left: 0.5rem;
+    background: linear-gradient( 180deg,var(--purple),var(--purple-dark));
+    box-shadow: inset 0 1px 0 0 var(--purple-light),0 1px 0 0 rgba(22,29,37,.05),0 0 0 0 transparent;
+
+
+    &:focus,
+    &:hover {
+      background: linear-gradient( 180deg,var(--purple-dark),var(--purple));
+      filter: brightness(1);
+    }
   }
 }
 
@@ -111,136 +125,6 @@ main {
   @include wrapper();
 }
 
-/* Onboarding
-============================================ */
-
-.click-tap {
-  &:before {
-    content: "click";
-
-    @media only screen and (max-width: 900px) {
-      content: "tap";
-    }
-  }
-}
-
-.camera {
-  @include videojs-font();
-
-  &:before {
-    content: "\f101";
-  }
-}
-
-.record {
-  @include videojs-font();
-
-  &:before {
-    content: "\f105";
-  }
-}
-
-.play {
-  @include video-font();
-
-  &:before {
-    content: "\f101";
-  }
-}
-
-/* Recorder
-============================================ */
-
-
-#video {
-  grid-area: video;
-  font-size: 18px;
-  border-bottom-left-radius: 4px;
-  width: 100%;
-
-  @media only screen and (max-width: 900px) {
-    font-size: 0.7rem;
-  }
-}
-
-.video__howto {
-  grid-area: info;
-  background-color: var(--white);
-  padding: 1rem;
-  border-bottom-right-radius: 4px;
-
-  @media only screen and (max-width: 900px) {
-    border-bottom-right-radius: 4px;
-    border-bottom-left-radius: 4px;
-  }
-
-  ol {
-    padding-left: 1.2rem;
-  }
-}
-
-.video__relative {
-  display: grid;
-  grid-area: video;
-  position: relative;
-  grid-template-columns: 66.666% 33.333%;
-  grid-template-rows: 1fr;
-  gap: 0px 0px;
-  grid-template-areas:
-    "video info";
-
-  @media only screen and (max-width: 900px) {
-    display: flex;
-    flex-direction: column;
-  }
-}
-
-.video__button {
-  position: absolute;
-  bottom: 20%;
-  left: 0;
-  width: 25%;
-  background-color: rgba(255,255,255,0.9);
-  padding: 1rem;
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-  box-shadow: var(--box-shadow);
-
-  @media only screen and (max-width: 900px) {
-    bottom: initial;
-    top: 0;
-    width: 100%;
-    border-radius: 0;
-  }
-}
-
-.main .video-js .vjs-control-bar {
-  display: flex;
-  align-items: center;
-  background-color: var(--black);
-  border-bottom-left-radius: 4px;
-
-  @media only screen and (max-width: 900px) {
-    border-radius: 0;
-  }
-}
-
-.main .vjs-record .vjs-device-button.vjs-control {
-  box-shadow: none;
-  background-color: var(--black);
-  border-radius: 4px;
-  font-size: 1.5rem;
-}
-
-.video__content {
-  background-color: var(--purple-dark);
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  color: var(--white);
-  padding: 0.25rem 1rem;
-  grid-area: header;
-}
-
 .video__wrapper {
   position: relative;
   display: grid;
@@ -256,3 +140,136 @@ main {
     flex-direction: column;
   }
 }
+
+.video__blurb {
+  background-color: var(--purple);
+  background: linear-gradient( 180deg,var(--purple),var(--purple-dark));
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+  color: var(--white);
+  padding: 0.25rem 1rem;
+  grid-area: header;
+}
+
+.video__content {
+  display: grid;
+  grid-area: video;
+  position: relative;
+  grid-template-columns: 66.666% 33.333%;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "video info";
+
+  @media only screen and (max-width: 900px) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+#video {
+  grid-area: video;
+  font-size: 18px;
+  border-bottom-left-radius: var(--border-radius);
+  width: 100%;
+
+  @media only screen and (max-width: 900px) {
+    font-size: 0.7rem;
+  }
+}
+
+.video__howto {
+  grid-area: info;
+  background-color: var(--white);
+  padding: 1rem;
+  border-bottom-right-radius: var(--border-radius);
+
+  @media only screen and (max-width: 900px) {
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
+  }
+
+  ol {
+    padding-left: 1.2rem;
+  }
+}
+
+.video__button {
+  position: absolute;
+  bottom: 20%;
+  left: 0;
+  width: 25%;
+  background-color: var(--black);
+  padding: 1rem;
+  box-shadow: var(--box-shadow);
+
+  @media only screen and (max-width: 900px) {
+    bottom: initial;
+    top: 0;
+    width: 100%;
+    border-radius: 0;
+    text-align: center;
+  }
+}
+
+/* Onboarding
+============================================ */
+
+.ios {
+  display: none;
+  @supports (-webkit-touch-callout: none) {
+    display: block;
+    font-weight: strong;
+  }
+}
+
+.click-tap {
+  &:before {
+    content: "click";
+
+    @media only screen and (max-width: 900px) {
+      content: "tap";
+    }
+  }
+}
+
+.camera {
+  @include videojs-font();
+  &:before { content: "\f101"; }
+}
+
+.record {
+  @include videojs-font();
+  &:before { content: "\f105"; }
+}
+
+.play {
+  @include video-font();
+  &:before { content: "\f101"; }
+}
+
+/* Video-js Overrides
+============================================ */
+
+.main .video-js .vjs-control-bar {
+  display: flex;
+  align-items: center;
+  background-color: var(--black);
+  border-bottom-left-radius: var(--border-radius);
+
+  @media only screen and (max-width: 900px) {
+    border-radius: 0;
+  }
+}
+
+.main [data-vjs-player] {
+  -webkit-transform: translate3d(0, 0, 0);
+}
+
+.main .vjs-record .vjs-device-button.vjs-control {
+  box-shadow: none;
+  background-color: var(--black);
+  border-radius: var(--border-radius);
+  font-size: 1.5rem;
+}
+
