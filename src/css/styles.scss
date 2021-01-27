@@ -26,12 +26,14 @@
   font-family: videojs-record;
   font-weight: normal;
   font-style: normal;
+  vertical-align: bottom;
 }
 
 @mixin video-font {
   font-family: VideoJS;
   font-weight: normal;
   font-style: normal;
+  vertical-align: bottom;
 }
 
 /* Basics

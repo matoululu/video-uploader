@@ -111,7 +111,7 @@ class Recorder extends React.Component {
     return(
       <div className="video__wrapper">
         <div className="video__blurb">
-          <p>Welcome to Emily's 29th birthday surprise! I've built this site to gather a collection of warm birthday wishes to piece together for Emily, this way we won't all feel so separated from one another if even for a short moment.</p>
+          <p>Welcome to Emily's 29th birthday surprise! I've created this site as a way to gather up some birthday wishes. While we may not be able to be together for this event this will help bridge that gap.</p>
           <p className="ios">It appears you may be using an iPhone! Unfortunately, iOS doesn't support the features used here. Your best bet is to use a laptop, desktop or android device. Alternatively, you can enable this experimental feature by going to 'Settings' > 'Safari' > 'Advanced' > 'Experimental features' > enable 'MediaRecorder' and than reload the page.</p>
         </div>
         <div className="video__content">
