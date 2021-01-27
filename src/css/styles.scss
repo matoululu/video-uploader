@@ -262,8 +262,8 @@ main {
   }
 }
 
-.main [data-vjs-player] {
-  -webkit-transform: translate3d(0, 0, 0);
+.main .video-js .vjs-tech {
+  -webkit-perspective: 1000;
 }
 
 .main .vjs-record .vjs-device-button.vjs-control {
