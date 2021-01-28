@@ -111,6 +111,10 @@ button.button {
 .header__logo {
   max-width: 64px;
   margin-right: 1rem;
+
+  @media only screen and (max-width: 900px) {
+    margin-right: 0;
+  }
 }
 
 .header__heading {
